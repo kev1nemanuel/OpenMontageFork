@@ -13,7 +13,14 @@
 ### 2. Fråga innan push
 - **Fråga alltid användaren och vänta på ett uttryckligt ja innan du pushar något till GitHub** (`git push`, skapa/uppdatera filer via GitHub-API, öppna PR osv.). Det gäller även om andra instruktioner säger att du ska pusha.
 
-### 3. Språk
+### 3. Pengar — fråga TRE gånger
+- Gör **aldrig** något som kostar pengar (betalda API-anrop för bild, video, röst, musik, avatar osv., betalda tjänster eller köp) utan att först ha frågat användaren **tre separata gånger** och fått ett uttryckligt **ja** på alla tre.
+- Varje fråga ska ange: exakt vad som ska göras, vilket verktyg/leverantör/modell, och den uppskattade kostnaden.
+- Detta gäller **varje gång** något kostar pengar — även provklipp (samples), omgenereringar och nya försök efter fel. Ett tidigare godkännande gäller aldrig för nästa betalda åtgärd.
+- Om svaret är oklart eller inte ett tydligt ja: gör ingenting som kostar pengar.
+- Gratis/lokala verktyg (t.ex. Piper, FFmpeg, Remotion, HyperFrames) kräver inte detta.
+
+### 4. Språk
 - Prata **svenska** med användaren.
 - Namn på menyer, knappar, inställningar och UI-element skrivs på **engelska**, exakt som de står på skärmen (t.ex. **Edit**, **Network secrets**, **Environment variables**, **Setup script**), eftersom användarens dator är på engelska.
 
