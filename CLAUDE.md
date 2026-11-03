@@ -23,6 +23,10 @@
 ### 4. Språk
 - Prata **svenska** med användaren.
 - Namn på menyer, knappar, inställningar och UI-element skrivs på **engelska**, exakt som de står på skärmen (t.ex. **Edit**, **Network secrets**, **Environment variables**, **Setup script**), eftersom användarens dator är på engelska.
+- **Allt innehåll som produceras är på engelska** (målgrupp: USA): manus, röster/narration, text i bild, undertexter, titlar, beskrivningar och prompter. Användarens YouTube-kanaler är engelskspråkiga. Bara samtalet med användaren sker på svenska.
+
+### 5. Kvalitetsnivå
+- Användaren vill ha **premiumkänsla, inte "AI-slop"**: naturliga röster (helst användarens egen klonade röst), egen originalmusik (inte generisk stock-musik) och genomarbetad grafik. Föreslå alltid det alternativ som ger bäst kvalitet först, med kostnad.
 
 ## Projektinstruktioner
 
