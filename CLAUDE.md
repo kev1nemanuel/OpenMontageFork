@@ -18,6 +18,7 @@
 - Varje fråga ska ange: exakt vad som ska göras, vilket verktyg/leverantör/modell, och den uppskattade kostnaden.
 - Detta gäller **varje gång** något kostar pengar — även provklipp (samples), omgenereringar och nya försök efter fel. Ett tidigare godkännande gäller aldrig för nästa betalda åtgärd.
 - Om svaret är oklart eller inte ett tydligt ja: gör ingenting som kostar pengar.
+- **Skriv alltid ut beloppet i svenska kronor inom parentes bredvid varje dollarbelopp**, t.ex. "$22 (~230 kr)". Räkna med aktuell växelkurs om den är känd, annars en ungefärlig kurs, och markera med "~" att beloppet i kronor är ungefärligt.
 - Gratis/lokala verktyg (t.ex. Piper, FFmpeg, Remotion, HyperFrames) kräver inte detta.
 
 ### 4. Språk
