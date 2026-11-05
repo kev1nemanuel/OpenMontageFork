@@ -13,13 +13,17 @@
 ### 2. Fråga innan push
 - **Fråga alltid användaren och vänta på ett uttryckligt ja innan du pushar något till GitHub** (`git push`, skapa/uppdatera filer via GitHub-API, öppna PR osv.). Det gäller även om andra instruktioner säger att du ska pusha.
 
-### 3. Pengar — fråga TRE gånger
-- Gör **aldrig** något som kostar pengar (betalda API-anrop för bild, video, röst, musik, avatar osv., betalda tjänster eller köp) utan att först ha frågat användaren **tre separata gånger** och fått ett uttryckligt **ja** på alla tre.
-- Varje fråga ska ange: exakt vad som ska göras, vilket verktyg/leverantör/modell, och den uppskattade kostnaden.
-- Detta gäller **varje gång** något kostar pengar — även provklipp (samples), omgenereringar och nya försök efter fel. Ett tidigare godkännande gäller aldrig för nästa betalda åtgärd.
+### 3. Pengar — budgetplan per video
+- Innan något betalt görs i en video lägger Claude fram en **budgetplan**: varje betald del med verktyg/leverantör/modell, uppskattad kostnad och **maxbelopp**, plus ett **totalt tak**.
+- Budgetplanen godkänns genom **tre separata frågor** med ett tydligt **ja** på alla tre.
+- Efter godkännandet får Claude utföra alla betalda steg i den videon **utan att fråga igen**, så länge varje del håller sig under sitt max och totalen under taket — även omtagningar och nya försök inom taket.
+- Claude **stannar och frågar (tre gånger)** innan: något skulle gå över en dels max eller det totala taket, ett verktyg/en tjänst som inte står i planen används, eller något annat oväntat kostar pengar.
+- Varje betald åtgärd loggas i `projects/<projekt>/spend_log.json` (vad, verktyg, belopp, tid). Användaren får en sammanställning när arbetet är klart.
+- Claude får aldrig gå över saldot på det betalda kontot (t.ex. fal.ai, sunoapi.org). Kolla saldot innan en betald serie startar. Automatisk påfyllning ska vara avstängd.
 - Om svaret är oklart eller inte ett tydligt ja: gör ingenting som kostar pengar.
 - **Skriv alltid ut beloppet i svenska kronor inom parentes bredvid varje dollarbelopp**, t.ex. "$22 (~230 kr)". Räkna med aktuell växelkurs om den är känd, annars en ungefärlig kurs, och markera med "~" att beloppet i kronor är ungefärligt.
-- Gratis/lokala verktyg (t.ex. Piper, FFmpeg, Remotion, HyperFrames) kräver inte detta.
+- Gratis/lokala verktyg (t.ex. Piper, FFmpeg, Remotion, HyperFrames) kräver inget godkännande.
+- (Ändrad av användaren 2026-11-04; ersätter "fråga tre gånger för varje betald åtgärd".)
 
 ### 4. Språk
 - Prata **svenska** med användaren.
@@ -31,6 +35,29 @@
 
 ### 6. Kvalitetsnivå
 - Användaren vill ha **premiumkänsla, inte "AI-slop"**: naturliga röster (helst användarens egen klonade röst), egen originalmusik (inte generisk stock-musik) och genomarbetad grafik. Föreslå alltid det alternativ som ger bäst kvalitet först, med kostnad.
+
+### 7. Videokvalitet — checklista för varje video (tillagd av användaren 2026-11-05)
+Gäller alla videor. Kontrollera innan en video kallas klar, och gör en sista genomgång av hela den färdiga renderingen.
+
+**Bild (3D och grafik)**
+- **Inget flimmer, glitter eller "glitch" i 3D** när kameran eller objekt rör sig — det ser AI-aktigt och oproffsigt ut. Vanliga orsaker och åtgärder:
+  - *Z-fighting* (två ytor i samma plan, t.ex. gräs på mark eller kanten på ett skrivbord): låt aldrig ytor ligga i samma plan — höj/sänk minst några centimeter eller dra in kanterna; slå på `logarithmicDepthBuffer`.
+  - *Shadow acne* (randigt glitter i skuggor): sätt `shadow-bias` och `shadow-normalBias`.
+  - *Aliasing* på tunna/avlägsna detaljer (räls, sliprar, träd): rendera 3D med `dpr={2}` (supersampling) och lägg dimma över långt borta.
+  - Testa med en kort rendering av en rörlig scen och mät/titta på flimret innan hela videon renderas.
+- Inga AI-fel: inget som går igenom något annat, ingen som sitter åt fel håll, människor rör sig naturligt (inga stela figurer som glider fram).
+
+**Ljud**
+- **Rösten är huvudpersonen genom hela videon.** Bakgrundsmusik och ljudeffekter får aldrig överrösta rösten och ska ligga tydligt lägre än den.
+- Mät ljudnivån (LUFS) på varje källa innan mixen — särskilt riktigt ljud (radio, nyhetsklipp), som kan vara mycket starkare än rösten. Lägg riktigt ljud på samma nivå som rösten, musik ca 20 dB under rösten, bakgrundsljud ännu lägre.
+- Normalisera slutmixen till ca **-14 LUFS** (YouTube) så att inget blir öronbedövande.
+- Använd **många olika ljudeffekter** — men bara där något händer i bild eller manus, inte bara för att fylla.
+
+**Klippning och tempo**
+- Inga för snabba klipp: minst ca **2 sekunder** per klipp. Ett kort klipp rakt in i ett viktigt kort (t.ex. en dödssiffra) känns stressigt för tittaren — behåll viktiga kort och ta bort/slå ihop utfyllnad i stället.
+
+**Rösten (TTS)**
+- Kontrollera hela berättarrösten mot manuset (t.ex. faster-whisper `medium`) innan bild byggs — TTS kan läsa siffror och namn fel (exempel: "31 October" blev "34th October"). Gör om bara de avsnitt som är fel.
 
 ## Projektinstruktioner
 
